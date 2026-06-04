@@ -1,0 +1,2 @@
+# This is a Node.js project (React/Vite). Dependencies are managed in package.json.
+# This file is intentionally left blank unless you are adding Python serverless functions.

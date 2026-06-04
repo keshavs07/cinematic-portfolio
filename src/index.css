@@ -1,0 +1,91 @@
+@import "tailwindcss";
+body {
+  background: linear-gradient(180deg, #9f1239, #4c0519);
+  color: white;
+  overflow-x: hidden;
+  font-family: Inter, sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.08), transparent 25%),
+    radial-gradient(circle at bottom right, rgba(255,255,255,0.05), transparent 25%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.glass {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.1);
+  transform: perspective(1200px) translateZ(0);
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  will-change: transform;
+}
+
+.glass:hover {
+  transform: perspective(1200px) translateZ(0) translateY(-12px) rotateX(3deg) rotateY(-3deg);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.red-glow {
+  box-shadow:
+    0 0 10px rgba(139,0,0,0.4),
+    0 0 20px rgba(139,0,0,0.5),
+    0 0 40px rgba(139,0,0,0.3);
+}
+
+.text-glow {
+  text-shadow:
+    0 0 10px rgba(139,0,0,0.7),
+    0 0 20px rgba(139,0,0,0.8),
+    0 0 40px rgba(139,0,0,0.5);
+}
+
+.noise {
+  position: fixed;
+  inset: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    url('https://grainy-gradients.vercel.app/noise.svg');
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.cinematic-border {
+  border: 1px solid rgba(139,0,0,0.3);
+}
+
+.red-gradient {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139,0,0,1),
+      rgba(60,0,0,1)
+    );
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+video {
+  user-select: none;
+}
