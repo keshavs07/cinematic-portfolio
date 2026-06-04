@@ -4,12 +4,12 @@ import { motion } from 'framer-motion'
 const portfolioVideos = [
   {
     title: 'Commercial Editing',
-    src: 'videos/cinematic/IMG_6018.mp4',
+    src: '/videos/cinematic/IMG_6018.mp4',
     type: 'video/mp4',
   },
   {
     title: 'Cinematic Editing',
-    src: 'videos/cinematic/IMG_7730.mp4',
+    src: '/videos/cinematic/IMG_7730.mp4',
     type: 'video/mp4',
   }
 ]
