@@ -11,24 +11,27 @@ type VideoItem = {
   type: string
 }
 
-const publicBase = import.meta.env.BASE_URL || '/'
 const defaultReels: VideoItem[] = [
+  // These URLs should be replaced with actual Firebase Storage download URLs
+  // After uploading reel videos to Firebase Storage
+  // Format: https://firebasestorage.googleapis.com/v0/b/YOUR_BUCKET/o/reels%2FIMG_0550.mp4?alt=media&token=YOUR_TOKEN
+  // For now, using public path as fallback
   {
     title: 'Cinematic Reel',
     desc: 'Viral Editing Style',
-    src: `${publicBase}videos/reels/Video-314.mp4`,
+    src: '/videos/reels/Video-314.mp4',
     type: 'video/mp4',
   },
   {
     title: 'VFX Reel',
     desc: 'Compositing & FX',
-    src: `${publicBase}videos/reels/Video-418.mp4`,
+    src: '/videos/reels/Video-418.mp4',
     type: 'video/mp4',
   },
   {
     title: '3D Reel',
     desc: 'Animation & Motion',
-    src: `${publicBase}videos/reels/IMG_0550.mp4`,
+    src: '/videos/reels/IMG_0550.mp4',
     type: 'video/mp4',
   },
 ]

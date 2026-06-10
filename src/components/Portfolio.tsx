@@ -10,16 +10,19 @@ type PortfolioVideo = {
   type: string
 }
 
-const publicBase = import.meta.env.BASE_URL || '/'
 const defaultPortfolioVideos: PortfolioVideo[] = [
+  // These URLs should be replaced with actual Firebase Storage download URLs
+  // After uploading portfolio videos to Firebase Storage
+  // Format: https://firebasestorage.googleapis.com/v0/b/YOUR_BUCKET/o/portfolio%2FIMG_6018.mp4?alt=media&token=YOUR_TOKEN
+  // For now, using public path as fallback
   {
     title: 'Commercial Editing',
-    src: `${publicBase}videos/cinematic/IMG_6018.mp4`,
+    src: '/videos/cinematic/IMG_6018.mp4',
     type: 'video/mp4',
   },
   {
     title: 'Cinematic Editing',
-    src: `${publicBase}videos/cinematic/IMG_7730.mp4`,
+    src: '/videos/cinematic/IMG_7730.mp4',
     type: 'video/mp4',
   },
 ]
