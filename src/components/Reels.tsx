@@ -11,23 +11,24 @@ type VideoItem = {
   type: string
 }
 
+const publicBase = import.meta.env.BASE_URL || '/'
 const defaultReels: VideoItem[] = [
   {
     title: 'Cinematic Reel',
     desc: 'Viral Editing Style',
-    src: '/videos/reels/Video-314.mp4',
+    src: `${publicBase}videos/reels/Video-314.mp4`,
     type: 'video/mp4',
   },
   {
     title: 'VFX Reel',
     desc: 'Compositing & FX',
-    src: '/videos/reels/Video-418.mp4',
+    src: `${publicBase}videos/reels/Video-418.mp4`,
     type: 'video/mp4',
   },
   {
     title: '3D Reel',
     desc: 'Animation & Motion',
-    src: '/videos/reels/IMG_0550.mp4',
+    src: `${publicBase}videos/reels/IMG_0550.mp4`,
     type: 'video/mp4',
   },
 ]
@@ -132,6 +133,7 @@ const Reels: React.FC = () => {
                     muted
                     loop
                     playsInline
+                    controls
                     preload="metadata"
                   >
                     <source src={item.src} type={item.type} />

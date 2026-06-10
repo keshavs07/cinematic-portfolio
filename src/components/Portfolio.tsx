@@ -10,15 +10,16 @@ type PortfolioVideo = {
   type: string
 }
 
+const publicBase = import.meta.env.BASE_URL || '/'
 const defaultPortfolioVideos: PortfolioVideo[] = [
   {
     title: 'Commercial Editing',
-    src: '/videos/cinematic/IMG_6018.mp4',
+    src: `${publicBase}videos/cinematic/IMG_6018.mp4`,
     type: 'video/mp4',
   },
   {
     title: 'Cinematic Editing',
-    src: '/videos/cinematic/IMG_7730.mp4',
+    src: `${publicBase}videos/cinematic/IMG_7730.mp4`,
     type: 'video/mp4',
   },
 ]
@@ -115,6 +116,7 @@ const Portfolio: React.FC = () => {
                   muted
                   loop
                   playsInline
+                  controls
                   preload="metadata"
                 >
                   <source src={project.src} type={project.type} />
