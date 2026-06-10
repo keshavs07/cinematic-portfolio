@@ -45,6 +45,12 @@ export default defineConfig([
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
+## Admin Video Uploads
+
+The app includes a hidden admin-only upload section for reels and portfolio videos. To enable it, set `VITE_ADMIN_UPLOAD_KEY` in your environment and open the app with `?admin=<your_admin_secret_key>` at the end of the URL.
+
+When hosted on Vercel, remote Firebase Storage video URLs will continue to work because the app uses Firebase `getDownloadURL()` links for uploaded videos.
+
 ```js
 // eslint.config.js
 import reactX from 'eslint-plugin-react-x'
