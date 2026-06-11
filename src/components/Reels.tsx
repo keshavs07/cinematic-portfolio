@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { getDownloadURL, listAll, ref as storageRef } from 'firebase/storage'
 import { storage } from '../firebase'
-import VideoUpload from './VideoUpload'
 
 type VideoItem = {
   title: string
@@ -19,19 +18,19 @@ const defaultReels: VideoItem[] = [
   {
     title: 'Cinematic Reel',
     desc: 'Viral Editing Style',
-    src: '/videos/reels/Video-314.mp4',
+    src: 'https://res.cloudinary.com/duahogwco/video/upload/v1781069174/Video-418_geekic.mp4',
     type: 'video/mp4',
   },
   {
     title: 'VFX Reel',
     desc: 'Compositing & FX',
-    src: '/videos/reels/Video-418.mp4',
+    src: 'https://res.cloudinary.com/duahogwco/video/upload/v1781069188/Video-314_fdjoev.mp4',
     type: 'video/mp4',
   },
   {
     title: '3D Reel',
     desc: 'Animation & Motion',
-    src: '/videos/reels/IMG_0550.mp4',
+    src: 'https://res.cloudinary.com/duahogwco/video/upload/v1781069211/IMG_0550_yxhewh.mp4',
     type: 'video/mp4',
   },
 ]
@@ -39,14 +38,8 @@ const defaultReels: VideoItem[] = [
 const Reels: React.FC = () => {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
   const [items, setItems] = useState<VideoItem[]>(defaultReels)
-  const [showUploader, setShowUploader] = useState(false)
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const adminKey = import.meta.env.VITE_ADMIN_UPLOAD_KEY
-      const queryKey = new URLSearchParams(window.location.search).get('admin')
-      setShowUploader(!!adminKey && adminKey === queryKey)
-    }
 
     const loadReels = async () => {
       try {
@@ -90,18 +83,6 @@ const Reels: React.FC = () => {
     }
   }
 
-  const handleUploadComplete = (url: string, name: string, type: string) => {
-    setItems((prev) => [
-      {
-        title: name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' '),
-        desc: 'Uploaded reel from Firebase Storage',
-        src: url,
-        type: type || 'video/mp4',
-      },
-      ...prev,
-    ])
-  }
-
   return (
     <section className="min-h-screen py-20">
       <div className="max-w-6xl mx-auto px-6 h-full">
@@ -114,12 +95,12 @@ const Reels: React.FC = () => {
           Reels
         </motion.h2>
 
-        <div className={`grid gap-8 ${showUploader ? 'lg:grid-cols-[1.4fr_0.6fr]' : 'lg:grid-cols-1'}`}>
-          <div className="flex gap-6 overflow-x-auto pb-6 snap-x hide-scrollbar min-h-[70vh]">
+        <div className="grid gap-8 lg:grid-cols-1">
+          <div className="flex gap-6 overflow-x-auto pb-6 snap-x hide-scrollbar h-[70vh]">
             {items.map((item, index) => (
               <motion.div
                 key={`${item.src}-${index}`}
-                className="min-w-[320px] h-[70vh] rounded-3xl glass p-6 snap-center"
+                className="min-w-[320px] h-full rounded-3xl glass p-6 snap-center"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ scale: 1.03 }}
@@ -152,12 +133,6 @@ const Reels: React.FC = () => {
               </motion.div>
             ))}
           </div>
-
-          {showUploader && (
-            <div className="sticky top-28 h-fit">
-              <VideoUpload folder="reels" label="Upload Reel Video" onUploadComplete={handleUploadComplete} />
-            </div>
-          )}
         </div>
 
         <div className="mt-12 overflow-hidden border-y border-red-900/30 py-6">

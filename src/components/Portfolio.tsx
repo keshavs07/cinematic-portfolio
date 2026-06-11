@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { getDownloadURL, listAll, ref as storageRef } from 'firebase/storage'
 import { storage } from '../firebase'
-import VideoUpload from './VideoUpload'
 
 type PortfolioVideo = {
   title: string
@@ -17,12 +16,12 @@ const defaultPortfolioVideos: PortfolioVideo[] = [
   // For now, using public path as fallback
   {
     title: 'Commercial Editing',
-    src: '/videos/cinematic/IMG_6018.mp4',
+    src: 'https://res.cloudinary.com/duahogwco/video/upload/v1781165952/IMG_6018-compressed_ma2mpa.mp4',
     type: 'video/mp4',
   },
   {
     title: 'Cinematic Editing',
-    src: '/videos/cinematic/IMG_7730.mp4',
+    src: 'https://res.cloudinary.com/duahogwco/video/upload/v1781166412/IMG_7730-compressed_qntiee.mp4',
     type: 'video/mp4',
   },
 ]
@@ -30,14 +29,8 @@ const defaultPortfolioVideos: PortfolioVideo[] = [
 const Portfolio: React.FC = () => {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
   const [portfolioVideos, setPortfolioVideos] = useState<PortfolioVideo[]>(defaultPortfolioVideos)
-  const [showUploader, setShowUploader] = useState(false)
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const adminKey = import.meta.env.VITE_ADMIN_UPLOAD_KEY
-      const queryKey = new URLSearchParams(window.location.search).get('admin')
-      setShowUploader(!!adminKey && adminKey === queryKey)
-    }
 
     const loadPortfolioVideos = async () => {
       try {
@@ -80,17 +73,6 @@ const Portfolio: React.FC = () => {
     }
   }
 
-  const handleUploadComplete = (url: string, name: string, type: string) => {
-    setPortfolioVideos((prev) => [
-      {
-        title: name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' '),
-        src: url,
-        type: type || 'video/mp4',
-      },
-      ...prev,
-    ])
-  }
-
   return (
     <section id="portfolio" className="min-h-screen py-10">
       <div className="h-full max-w-7xl mx-auto px-6">
@@ -98,9 +80,8 @@ const Portfolio: React.FC = () => {
           Portfolio
         </motion.h2>
 
-        <div className={`grid gap-8 ${showUploader ? 'lg:grid-cols-[1.4fr_0.6fr]' : 'lg:grid-cols-1'}`}>
-          <div className="grid gap-8">
-            {portfolioVideos.map((project, idx) => (
+        <div className="grid gap-8 lg:grid-cols-1">
+          {portfolioVideos.map((project, idx) => (
               <motion.div
                 key={`${project.src}-${idx}`}
                 className="relative overflow-hidden rounded-[2rem] bg-black h-[75vh]"
@@ -130,15 +111,8 @@ const Portfolio: React.FC = () => {
                 <div className="absolute left-8 bottom-8 text-white">
                   <h3 className="text-4xl font-semibold tracking-tight">{project.title}</h3>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {showUploader && (
-            <div className="sticky top-28 h-fit">
-              <VideoUpload folder="portfolio" label="Upload Portfolio Video" onUploadComplete={handleUploadComplete} />
-            </div>
-          )}
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
