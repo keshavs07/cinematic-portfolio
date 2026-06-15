@@ -58,10 +58,17 @@ body::before {
 }
 
 .section-title {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 3rem;
+    letter-spacing: 3px;
+  }
 }
 
 .cinematic-border {

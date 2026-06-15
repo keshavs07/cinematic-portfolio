@@ -30,7 +30,7 @@ const About: React.FC = () => {
           </div>
 
           <div>
-            <h3 className="text-3xl font-bold mb-8 text-glow">Creative Workflow</h3>
+            <h3 className="text-2xl md:text-3xl font-bold mb-8 text-glow">Creative Workflow</h3>
 
             <div className="space-y-6">
               {timeline.map((item, index) => (
